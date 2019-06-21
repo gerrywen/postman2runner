@@ -12,3 +12,6 @@
 demo/*
 testhar/*
 api/*
+dist/*
+*.egg-info
+

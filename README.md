@@ -9,7 +9,7 @@ To see ``postman2runner`` version:
 
 ```shell
 $ python main.py -V
-0.0.1
+0.1.0
 ```
 
 To see available options, run
@@ -37,7 +37,7 @@ optional arguments:
 In most cases, you can run ``postman2runner`` like this:
 
 ```shell
-$ python3 main.py test/test.json output.json
+$ python3 main.py test/test.json
 INFO:root:Generate JSON testset successfully: output.json
 ```
 
