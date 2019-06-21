@@ -69,6 +69,25 @@ class PostmanParser(object):
             _value += _url
         return _value
 
+    def parse_api_uri(self, url):
+        """
+        获取接口地址
+        :param url:
+        :return:
+        """
+        url_split = url.split(")}", 1)
+        _url = ''
+        if len(url_split) > 1:
+            _url = url_split[1]
+        else:
+            url_split = url.split("/")[-1]
+            if len(url_split) > 1:
+                _url = url_split[1]
+            else:
+                _url = url
+        _url = _url.replace('/', '_')
+        return _url
+
     def dict_format(self, dict_obj, dict_tmp={}):
         """
         对raw数据提交进行格式化
@@ -93,7 +112,14 @@ class PostmanParser(object):
         """
         api = {}
         api["name"] = item["name"]
-        api["validate"] = []
+        api["validate"] = [
+            {
+                "eq": ['status_code', 200]
+            },
+            {
+                "eq": ['headers.Content-Type', 'application/json']
+            }
+        ]
         api["variables"] = []
 
         request = {}
@@ -181,7 +207,11 @@ class PostmanParser(object):
             os.makedirs(output_dir)
         for each_api in data:
             count += 1
-            file_name = str(count) + "." + output_file_type
+            try:
+                api_uri = self.parse_api_uri(each_api['request']['url'])
+            except:
+                api_uri = str(count)
+            file_name = api_uri + "." + output_file_type
 
             folder_name = each_api.pop("folder_name")
             if folder_name:

@@ -9,7 +9,6 @@ To see ``postman2runner`` version:
 
 ```shell
 $ python main.py -V
-0.1.0
 ```
 
 To see available options, run
@@ -17,19 +16,19 @@ To see available options, run
 ```shell
 $ python main.py -h
 usage: main.py [-h] [-V] [--log-level LOG_LEVEL]
-               [postman_testset_file] [output_testset_file]
+               [postman_testset_file] [-- output_dir] [-- output_file_type]
 
 Convert postman testcases to JSON testcases for HttpRunner.
 
 positional arguments:
   postman_testset_file  Specify postman testset file.
-  output_testset_file   Optional. Specify converted JSON testset file.
+  -- output_dir   Optional. Specify converted JSON testset folder.
+  -- output_file_type  Optional. Generate file format , default json.
 
 optional arguments:
   -h, --help            show this help message and exit
   -V, --version         show version
-  --log-level LOG_LEVEL
-                        Specify logging level, default is INFO.
+  --log-level LOG_LEVEL Specify logging level, default is INFO.
 ```
 
 ## examples
@@ -37,7 +36,7 @@ optional arguments:
 In most cases, you can run ``postman2runner`` like this:
 
 ```shell
-$ python3 main.py test/test.json
+$ python3 main.py tests/data/test.json --output_dir tests/postman2case --output_file_type yaml
 INFO:root:Generate JSON testset successfully: output.json
 ```
 
@@ -48,7 +47,7 @@ The output testset file type is detemined by the suffix of your specified file.
 If you only specify postman source file path, the output testset is in JSON format by default and located in the same folder with source file.
 
 ```shell
-$ python3 main.py test/test.json
+$ python3 main.py tests/data/test.json
 INFO:root:Generate JSON testset successfully: test/test.output.json
 ```
 
