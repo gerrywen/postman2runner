@@ -12,6 +12,7 @@ setup(
     version=__version__,
     description='Convert POSTMAN data to JSON testcases for HttpRunner.',
     long_description=long_description,
+    long_description_content_type="README.rst",
     author='gerrywen',
     author_email='blog@gerrywen.com',
     url='https://github.com/gerrywen/postman2runner',
